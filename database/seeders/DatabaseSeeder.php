@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         DB::table('colors')->truncate();
         DB::table('category_products')->truncate();
         DB::table('product_photos')->truncate();
+        DB::table('orders')->truncate();
+        DB::table('order_products')->truncate();
         Schema::enableForeignKeyConstraints();
 
         $this->call(UserTableSeeder::class);
@@ -33,6 +35,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ColorProductTableSeeder::class);
         $this->call(CategoryProductTableSeeder::class);
         $this->call(ProductPhotosTableSeeder::class);
+        $this->call(OrderTableSeeder::class);
+        $this->call(OrderProductTableSeeder::class);
 
     }
 }
