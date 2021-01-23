@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Categories;
+use App\Models\ProductPhotos;
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class ProductPhotosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Categories::factory(1000)->create();
+        ProductPhotos::factory(1000)->create();
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,12 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Schema::disableForeignKeyConstraints();
         DB::table('users')->truncate();
+        DB::table('addresses')->truncate();
         DB::table('categories')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::table('products')->truncate();
+        DB::table('colors')->truncate();
+        DB::table('category_products')->truncate();
+        DB::table('product_photos')->truncate();
+        Schema::enableForeignKeyConstraints();
 
-        $this->call(CategoriesTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(AddressTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(ColorTableSeeder::class);
+        $this->call(ColorProductTableSeeder::class);
+        $this->call(CategoryProductTableSeeder::class);
+        $this->call(ProductPhotosTableSeeder::class);
+
     }
 }

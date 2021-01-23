@@ -2,17 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Categories;
+use App\Models\Color;
+use App\Models\ColorProduct;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CategoriesFactory extends Factory
+class ColorProductFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Categories::class;
+    protected $model = ColorProduct::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +24,8 @@ class CategoriesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'description' => $this->faker->text,
-            'parent_id' => 0,
-            'is_active' => 1,
+            'color_id' => Color::all()->random()->id,
+            'product_id' => Product::all()->random()->id,
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoriesRequest;
 use App\Http\Resources\CategoriesResource;
 use App\Models\Categories;
+use App\Models\User;
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 
@@ -14,12 +15,11 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        $data = Categories::paginate(10);
-        return CategoriesResource::collection($data);
+        return CategoriesResource::collection(Categories::paginate(10));
     }
 
     /**

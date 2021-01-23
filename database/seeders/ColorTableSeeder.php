@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Categories;
+use App\Models\Color;
 use Illuminate\Database\Seeder;
 
-class CategoriesTableSeeder extends Seeder
+class ColorTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Categories::factory(1000)->create();
+        Color::factory(1000)->create();
     }
 }
