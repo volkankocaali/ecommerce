@@ -26,8 +26,8 @@ class CategoriesRequest extends FormRequest
         return [
             'name' => 'required|max:200',
             'description' => 'required|max:500',
-            'slug' => 'required|unique:categories',
             'is_active' => 'required|numeric',
+            'parent_id' => 'required|numeric',
         ];
     }
     public function attributes()
@@ -35,8 +35,8 @@ class CategoriesRequest extends FormRequest
         return [
             'name' => 'Kategori Adı',
             'description' => 'Kategori Açıklaması',
-            'slug' => 'Kategori Slug',
             'is_active' => 'Kategori Durum',
+            'parent_id' => 'Alt Kategori',
         ];
     }
 }

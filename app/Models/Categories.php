@@ -10,4 +10,13 @@ class Categories extends Model
     use HasFactory;
 
     public $guarded = [];
+
+    public function children(){
+        return $this->hasMany(Categories::class,'parent_id','id');
+    }
+
+    public function parent(){
+        return $this->belongsTo(Categories::class,'parent_id');
+    }
+
 }

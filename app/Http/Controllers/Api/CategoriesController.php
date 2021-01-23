@@ -19,7 +19,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return CategoriesResource::collection(Categories::paginate(10));
+        return CategoriesResource::collection(Categories::paginate(20));
     }
 
     /**
@@ -45,8 +45,8 @@ class CategoriesController extends Controller
         $categories = Categories::create([
             'name' => $request->name,
             'description' => $request->description,
-            'slug' => $request->slug,
             'is_active' => $request->is_active,
+            'parent_id' => $request->parent_id,
         ]);
 
         if($categories){
@@ -93,11 +93,32 @@ class CategoriesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(CategoriesRequest $request, $id)
     {
         $request->validated();
+
+        $categories = Categories::find($id);
+        $categories->name = $request->post('name');
+        $categories->description = $request->post('description');
+        $categories->is_active = $request->post('is_active');
+        $categories->parent_id = $request->post('parent_id');
+        $categories->save();
+        if($categories){
+            return response()->json([
+                'result' => 1,
+                'message' => 'Güncelleme işlemi başarılı',
+            ],201);
+        }
+        else{
+            return response()->json([
+                'result' => 0,
+                'message' => 'Sunucu hatası...',
+            ],500);
+        }
+
+
 
     }
 
@@ -105,11 +126,23 @@ class CategoriesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $categories = Categories::destroy($id);
+        if($categories){
+            return response()->json([
+                'result' => 1,
+                'message' => 'Silme işlemi başarılı',
+            ],201);
+        }
+        else{
+            return response()->json([
+                'result' => 0,
+                'message' => 'Sunucu hatası...',
+            ],500);
+        }
     }
 
 }

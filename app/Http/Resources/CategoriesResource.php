@@ -15,10 +15,12 @@ class CategoriesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'category_name' => $this->name,
-            'category_description' => $this->description,
-            'category_slug' => $this->slug,
-            'publish_at' => $this->created_at,
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'is_active' => $this->is_active,
+            'children' => CategoriesResource::collection($this->children),
+            'created_at' => $this->created_at,
         ];
     }
 }
